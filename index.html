@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Programming Language Installer</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+    <!-- Animated Background -->
+    <div class="animated-background"></div>
+
+    <!-- Header Section -->
+    <header class="bg-white/80 backdrop-blur-md shadow-lg fixed w-full top-0 z-50">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="logo-container">
+                        <i class="fas fa-code text-4xl text-blue-600 mr-2 animate-pulse"></i>
+                        <h1 class="text-2xl font-bold text-gray-800">Universal Language Installer</h1>
+                    </div>
+                </div>
+                <div class="flex space-x-4">
+                    <button class="nav-button" onclick="showSection('home')">
+                        <i class="fas fa-home mr-2"></i>Home
+                    </button>
+                    <button class="nav-button" onclick="showSection('languages')">
+                        <i class="fas fa-code-branch mr-2"></i>Languages
+                    </button>
+                    <button class="nav-button" onclick="showSection('installed')">
+                        <i class="fas fa-check-circle mr-2"></i>Installed
+                    </button>
+                    <button class="nav-button" onclick="showSection('settings')">
+                        <i class="fas fa-cog mr-2"></i>Settings
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 mt-20">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="text-center mb-12 animate__animated animate__fadeIn">
+                <h2 class="text-5xl font-bold text-gray-800 mb-4 gradient-text">Welcome to Universal Language Installer</h2>
+                <p class="text-xl text-gray-600">Install any programming language with just one click!</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-card animate__animated animate__fadeInUp">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt text-4xl text-blue-600 mb-4"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Quick Installation</h3>
+                    <p class="text-gray-600">Install programming languages instantly without complex commands</p>
+                </div>
+                <div class="feature-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe text-4xl text-blue-600 mb-4"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Cross-Platform</h3>
+                    <p class="text-gray-600">Works on Windows, macOS, and Linux</p>
+                </div>
+                <div class="feature-card animate__animated animate__fadeInUp" style="animation-delay: 0.4s">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt text-4xl text-blue-600 mb-4"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Safe & Secure</h3>
+                    <p class="text-gray-600">All installations are verified and secure</p>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalLanguages">8</div>
+                    <div class="stat-label">Available Languages</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="totalDownloads">0</div>
+                    <div class="stat-label">Total Downloads</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="activeUsers">0</div>
+                    <div class="stat-label">Active Users</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="successRate">100%</div>
+                    <div class="stat-label">Success Rate</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Languages Section -->
+        <section id="languages" class="section hidden">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800">Available Languages</h2>
+                <div class="flex space-x-4">
+                    <div class="search-container">
+                        <i class="fas fa-search text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2"></i>
+                        <input type="text" id="searchInput" placeholder="Search languages..." 
+                               class="pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <select id="categoryFilter" class="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="all">All Categories</option>
+                        <option value="general">General Purpose</option>
+                        <option value="web">Web Development</option>
+                        <option value="mobile">Mobile Development</option>
+                        <option value="data">Data Science</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="languagesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Language cards will be dynamically added here -->
+            </div>
+        </section>
+
+        <!-- Installed Section -->
+        <section id="installed" class="section hidden">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Installed Languages</h2>
+            <div id="installedLanguages" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Installed languages will be dynamically added here -->
+            </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section id="settings" class="section hidden">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Settings</h2>
+            <div class="bg-white/80 backdrop-blur-md rounded-lg shadow-lg p-6">
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold mb-4">Installation Preferences</h3>
+                    <div class="space-y-4">
+                        <div class="setting-item">
+                            <input type="checkbox" id="autoUpdate" class="toggle-switch">
+                            <label for="autoUpdate">Enable automatic updates</label>
+                        </div>
+                        <div class="setting-item">
+                            <input type="checkbox" id="verifyInstall" class="toggle-switch">
+                            <label for="verifyInstall">Verify installations</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold mb-4">System Information</h3>
+                    <div id="systemInfo" class="space-y-2">
+                        <!-- System info will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white/80 backdrop-blur-md shadow-lg mt-12">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex justify-between items-center">
+                <p class="text-gray-600">© 2024 Universal Language Installer. All rights reserved.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                    <a href="#" class="footer-link">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Installation Modal -->
+    <div id="installModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-semibold">Installation Progress</h3>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="progress-steps">
+                    <div class="step active">Download</div>
+                    <div class="step">Verify</div>
+                    <div class="step">Install</div>
+                    <div class="step">Configure</div>
+                </div>
+            </div>
+            <p id="installStatus" class="mt-4 text-center">Preparing installation...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
